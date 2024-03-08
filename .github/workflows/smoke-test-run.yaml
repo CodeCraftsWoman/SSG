@@ -48,6 +48,6 @@ jobs:
             -u ${{ secrets.TESTRAIL_USERNAME}} \
             -p ${{ secrets.TESTRAIL_PASSWORD}} \
             parse_junit \
-            --title "Automated Tests from GitHub workflow" \
+            --title "Automated Tests from GitHub workflow ${{ github.run_id }}" \
             --run-description ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
             -f "junit-report.xml"
