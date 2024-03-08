@@ -9,6 +9,7 @@ on:
       - main
   schedule:
     - cron: '0 12 * * *' # Everyday 5 am PST
+  on: [workflow_dispatch]
 
 jobs:
   test:
@@ -32,3 +33,22 @@ jobs:
          PAGE_URL: ${{ secrets.PAGE_URL}}
          TEST_USERNAME: ${{secrets.TEST_USERNAME}}
          TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
+         PLAYWRIGHT_JUNIT_OUTPUT_NAME: junit-report.xml
+      - name: Python setup
+        if: always()
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.x'
+      - name: TestRail CLI upload results
+        if: always()
+        run: |
+          pip install trcli
+          trcli -y \
+            -h ${{ secrets.TESTRAIL_URL}} \
+            --project "SSG" \
+            -u ${{ secrets.TESTRAIL_USERNAME}} \
+            -p ${{ secrets.TESTRAIL_PASSWORD}} \
+            parse_junit \
+            --title "Automated Tests from GitHub workflow" \
+            --run-description ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
+            -f "junit-report.xml"

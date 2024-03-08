@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "smoke-test": "npx playwright test --project=chromium"
+    "smoke-test": "npx playwright test --project=chromium --reporter=junit"
   },
   "keywords": [],
   "author": "",
