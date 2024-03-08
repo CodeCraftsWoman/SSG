@@ -8,9 +8,16 @@ npm install
 npm run smoke-test
 ```
 
-Test Run on Github Actions
+## Test Run on Github Actions
 - Everyday at 5 AM
 - every push to main
 
-Test Results go to the TestRail
+## Test Results go to the TestRail
+
+### passed
+
 ![alt text](image.png)
+
+### failed
+
+![alt text](image-1.png)
