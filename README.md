@@ -12,5 +12,5 @@ Test Run on Github Actions
 - Everyday at 5 AM
 - every push to main
 
-Test Result go TestRail
+Test Results go to the TestRail
 ![alt text](image.png)

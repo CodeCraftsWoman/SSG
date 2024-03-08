@@ -101,5 +101,5 @@ test ("As a User I try to login to Practice page with valid username and passwor
     const capitalPassword = (process.env.TEST_PASSWORD||'').toUpperCase();
     await loginPage.login(process.env.TEST_USERNAME||'', capitalPassword);
     const actualFlashErrorMessage = await loginPage.flashMessage();
-    await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
+    await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage+"hello");
 })
