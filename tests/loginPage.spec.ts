@@ -10,19 +10,19 @@ test.beforeEach(async({page}) => {
     await loginPage.gotoLoginPage();
 })
 
-test ("As a User verify that Practice login page exist" , async ({page})=> {
+test ("As a User I verify that the Practice login page exist" , async ({page})=> {
     loginPage = new LoginPage(page);
     await expect(page.url()).toEqual(process.env.PAGE_URL+"login");
 })
 
-test ("As a User verify that Practice login page title is exist and correct" , async ({page})=> {
+test ("As a User I verify that the Practice login page title is exist and correct" , async ({page})=> {
     loginPage = new LoginPage(page);
     const actualTitle = await loginPage.loginPageTitle();
     const expectedTitle = "Login Page";
     await expect(actualTitle).toEqual(expectedTitle);
 })
 
-test ("As a User I login to Practice page with valid username and password and verify I'm at secure page " , async ({page})=> {
+test ("As a User when I login to Practice page with valid username and password and verify I'm at secure page " , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashMessage = "You logged into a secure area!";
@@ -44,7 +44,7 @@ test ("As a User I try to go directly to the Secure page without login and verif
     await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
 })
 
-test ("As a User click the login button without enter any username or password in Practice page and verify the error message" , async ({page})=> {
+test ("As a User when I click the login button without entering username or password in the Practice page and then verify the error message" , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashErrorMessage = "Your username is invalid!"; // User is getting this message when username and password is not entered, message should be "please enter username and password or message should be 'please enter username and password'"
@@ -53,7 +53,7 @@ test ("As a User click the login button without enter any username or password i
     await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
 })
 
-test ("As a User click the login button with entering valid username and no password in Practice page and verify the error message" , async ({page})=> {
+test ("As a User when I click the login button and entering valid username and not entering a valid password in the Practice page and then verify the error message" , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashErrorMessage = "Your password is invalid!";
@@ -62,7 +62,7 @@ test ("As a User click the login button with entering valid username and no pass
     await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
 })
 
-test ("As a User click the login button with entering no username and valid password in Practice page and verify the error message" , async ({page})=> {
+test ("As a User when I click the login button with entering no username and entering a valid password in the Practice page and then verify the error message" , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashErrorMessage = "Your username is invalid!";
@@ -71,7 +71,7 @@ test ("As a User click the login button with entering no username and valid pass
     await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
 })
 
-test ("As a User log out from the Secure page and verify the successful message and login page" , async ({page})=> {
+test ("As a User when I log out from the Secure page and then verify the successful message, and the Login page title is visible" , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashMessage = "You logged out of the secure area!";
@@ -84,7 +84,7 @@ test ("As a User log out from the Secure page and verify the successful message 
     await expect(actualTitle).toEqual(expectedTitle);
 })
 
-test ("As a User I try to login to Practice page with valid username with Capital case and password and verify the error message " , async ({page})=> {
+test ("As a User when I login to the Practice page with valid username with Capital case and valid password and then verify the error message " , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashErrorMessage = "Your username is invalid!";
@@ -94,7 +94,7 @@ test ("As a User I try to login to Practice page with valid username with Capita
     await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
 })
 
-test ("As a User I try to login to Practice page with valid username and password with Capital case and verify the error message " , async ({page})=> {
+test ("As a User when I login to the Practice page with valid username and password with Capital case and then verify the error message " , async ({page})=> {
     loginPage = new LoginPage(page);
     secureAreaPage = new SecureAreaPage(page);
     const expectedFlashErrorMessage = "Your password is invalid!";
