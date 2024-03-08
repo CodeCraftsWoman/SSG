@@ -10,14 +10,15 @@ npm run smoke-test
 
 ## Test Run on Github Actions
 - Everyday at 5 AM
-- every push to main
+- Every push to main
+- On demand
 
 ## Test Results go to the TestRail
 
-### passed
+### Passed Result
 
 ![alt text](image.png)
 
-### failed
+### Failed Result
 
 ![alt text](image-1.png)
