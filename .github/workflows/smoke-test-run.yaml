@@ -21,8 +21,12 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run Playwright tests
-        run: npm run smoke-test
+      - name: Install dependencies and Run Playwright tests
+        run: |
+         npm install
+         npx playwright install 
+         npm run smoke-test
+        env:
+         PAGE_URL: ${{ secrets.PAGE_URL}}
+         TEST_USERNAME: ${{secrets.TEST_USERNAME}}
+         TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
