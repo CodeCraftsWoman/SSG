@@ -84,5 +84,22 @@ test ("As a User log out from the Secure page and verify the successful message 
     await expect(actualTitle).toEqual(expectedTitle);
 })
 
+test ("As a User I try to login to Practice page with valid username with Capital case and password and verify the error message " , async ({page})=> {
+    loginPage = new LoginPage(page);
+    secureAreaPage = new SecureAreaPage(page);
+    const expectedFlashErrorMessage = "Your username is invalid!";
+    const capitalUsername = (process.env.TEST_USERNAME||'').toUpperCase();
+    await loginPage.login(capitalUsername, process.env.TEST_PASSWORD||'');
+    const actualFlashErrorMessage = await loginPage.flashMessage();
+    await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
+})
 
-
+test ("As a User I try to login to Practice page with valid username and password with Capital case and verify the error message " , async ({page})=> {
+    loginPage = new LoginPage(page);
+    secureAreaPage = new SecureAreaPage(page);
+    const expectedFlashErrorMessage = "Your password is invalid!";
+    const capitalPassword = (process.env.TEST_PASSWORD||'').toUpperCase();
+    await loginPage.login(process.env.TEST_USERNAME||'', capitalPassword);
+    const actualFlashErrorMessage = await loginPage.flashMessage();
+    await expect(actualFlashErrorMessage).toEqual(expectedFlashErrorMessage);
+})
