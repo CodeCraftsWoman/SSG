@@ -9,7 +9,6 @@ on:
       - main
   schedule:
     - cron: '0 12 * * *' # Everyday 5 am PST
-  on: [workflow_dispatch]
 
 jobs:
   test:
