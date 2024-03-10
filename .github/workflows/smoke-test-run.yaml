@@ -36,6 +36,10 @@ jobs:
          TEST_USERNAME: ${{secrets.TEST_USERNAME}}
          TEST_PASSWORD: ${{secrets.TEST_PASSWORD}}
          PLAYWRIGHT_JUNIT_OUTPUT_NAME: junit-report.xml
+      - name: "Set current date as env variable"
+        run: |
+          echo "builddate=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        id: version  # this is used on variable path
       - name: Python setup
         if: always()
         uses: actions/setup-python@v3
@@ -52,6 +56,6 @@ jobs:
             -u ${{ secrets.TESTRAIL_USERNAME}} \
             -p ${{ secrets.TESTRAIL_PASSWORD}} \
             parse_junit \
-            --title "Automated Tests from GitHub workflow #date ${{ env.NOW }} #${{ github.run_id }}" \
+            --title "Automated Tests from GitHub workflow #date ${{ steps.version.outputs.builddate }} #${{ github.run_id }}" \
             --run-description ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }} \
             -f "junit-report.xml"
