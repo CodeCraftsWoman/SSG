@@ -1,18 +1,7 @@
 import { expect, type Locator, type Page } from "@playwright/test";
+import { BasePage } from "./basePage";
 
-export class SecureAreaPage {
-
-    readonly page: Page;
-    readonly getLogoutButton: Locator;
-    readonly getSecureAreaTitle: Locator;
-    readonly getFlashMessage: Locator;
-
-    constructor(page: Page){
-        this.page = page;
-        this.getLogoutButton = page.locator('.icon-signout:has-text("Logout")');
-        this.getSecureAreaTitle = page.locator('//h1[contains(text(), "Secure Area")]')
-        this.getFlashMessage = page.locator('#flash-message')
-    }
+export class SecureAreaPage extends BasePage {
 
     async gotoSecurePage() {
         await this.page.goto('/secure');

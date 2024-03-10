@@ -1,31 +1,20 @@
 import { expect, type Locator, type Page } from "@playwright/test";
+import { BasePage } from "./basePage";
 
-export class LoginPage {
-
-    readonly page: Page;
-    readonly getUsernameBox: Locator;
-    readonly getPasswordBox: Locator;
-    readonly getLoginButton: Locator;
-    readonly getLoginTitle: Locator;
-    readonly getFlashMessage: Locator;
-
-    constructor(page: Page){
-        this.page = page;
-        this.getUsernameBox = page.locator('#username');
-        this.getPasswordBox = page.getByRole('textbox', {name: "password"});
-        this.getLoginButton = page.locator('[type ="submit"]');
-        this.getLoginTitle = page.locator('//h1[contains(text(), "Login Page")]')
-        this.getFlashMessage = page.locator('#flash-message')
-    }
+export class LoginPage extends BasePage {
 
     async gotoLoginPage() {
         await this.page.goto('/login');
     }
 
     async login(username: string, password: string) {
-        await this.getUsernameBox.fill(username);
-        await this.getPasswordBox.fill(password);
-        await this.getLoginButton.click()
+        await this.getUsernameBox.fill(username),
+        await this.getPasswordBox.fill(password)
+        await this.getLoginButton.click();
+    }
+
+    async clickLogin(){
+        await this.getLoginButton.click();
     }
 
     async loginPageTitle(){
@@ -34,11 +23,6 @@ export class LoginPage {
     }
 
     async flashMessage(){
-        const titleText = await this.getFlashMessage.innerText();
-        return titleText;
-    }
-
-    async loggedOutFlashMessage(){
         const titleText = await this.getFlashMessage.innerText();
         return titleText;
     }
