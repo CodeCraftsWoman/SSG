@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
-import { chromium } from 'playwright';
 import { LoginPage } from '../pages/loginPage'
 import { SecureAreaPage } from '../pages/secureAreaPage'
+const { chromium } = require('playwright-core');
 
 let browser;
 let loginPage: LoginPage;
